@@ -24,10 +24,19 @@ This repository contains:
 - **Occlusion:** In dense traffic, heavy occlusion can lower confidence scores for background vehicles.
 - **Computational Constraints:** Processing 640x640 images over 100 epochs demanded significant VRAM, requiring careful batch size optimization to prevent out-of-memory errors on standard GPUs.
 
-## Requirements and Installation
+## Requirements and Execution
 
+This project was originally developed and executed in a **Kaggle** environment to leverage GPU resources (Tesla T4). You have two options to run the machine learning pipeline:
 
-To run the core machine learning pipeline locally, you need Python and the `ultralytics` package.
+### Option 1: Run via Kaggle (Recommended)
+1. Open [Kaggle](https://www.kaggle.com/) and create a new notebook.
+2. Upload `vechicle-detection-with-yolo.ipynb` to your workspace.
+3. Turn on the **GPU T4x2** accelerator in the session settings.
+4. Run the cells sequentially.
+
+### Option 2: Run Locally
+To run the core machine learning pipeline on your local machine, ensure you meet the following prerequisites:
+
 
 1. Clone the repository:
    ```bash
@@ -40,8 +49,15 @@ To run the core machine learning pipeline locally, you need Python and the `ultr
    pip install -r requirements.txt
    ```
 
-3. Run the notebook:
-   Open `vechicle-detection-with-yolo.ipynb` in Jupyter Notebook or JupyterLab to execute the pipeline step-by-step.
+3. Download the Dataset:
+   - Download the dataset from Kaggle: [Vehicle Dataset for YOLO](https://www.kaggle.com/datasets/nadinpethiyagoda/vehicle-dataset-for-yolo)
+   - Extract the downloaded ZIP file into a new folder named `dataset/` at the root of this project.
+
+4. Adjust Dataset Paths:
+   When opening the notebook, find the cell that defines or loads the `data.yaml` configuration. Change the absolute Kaggle dataset paths (`/kaggle/input/...`) to your newly created local path (e.g., `./dataset/...`).
+
+5. Run the notebook:
+   Open `vechicle-detection-with-yolo.ipynb` in Jupyter Notebook or JupyterLab.
 
 ## Web Application (Next.js)
 
