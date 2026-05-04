@@ -14,6 +14,8 @@ export default function Home() {
     "srilankavan43.jpg"
   ];
 
+  const basePath = process.env.NODE_ENV === "production" ? "/vehicle-classification-yolo" : "";
+
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 md:py-20 font-serif text-gray-900 leading-relaxed">
       {/* Header */}
@@ -104,7 +106,7 @@ export default function Home() {
             <figure key={idx} className="bg-white border border-gray-200 rounded p-3 shadow-sm flex flex-col items-center">
               <div className="relative w-full aspect-[4/3] overflow-hidden rounded bg-gray-100 mb-3">
                 <Image 
-                  src={`/hasil_deteksi/${img}`} 
+                  src={`${basePath}/hasil_deteksi/${img}`} 
                   alt={`Inference Result ${idx + 1}`} 
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
