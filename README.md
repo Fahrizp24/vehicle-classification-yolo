@@ -1,2 +1,58 @@
-# vehicle-classification-yolo
+# Vehicle Classification with YOLOv8
 
+This project implements a robust vehicle detection and classification pipeline using the YOLOv8 architecture. It is designed to accurately detect 6 classes of vehicles commonly found in traffic (Car, Threewheel, Bus, Truck, Motorbike, Van).
+
+**Live Project Page:** [https://Fahrizp24.github.io/vehicle-classification-yolo/](https://Fahrizp24.github.io/vehicle-classification-yolo/)
+
+## Overview
+This repository contains:
+- `vechicle-detection-with-yolo.ipynb`: The primary Jupyter Notebook containing the end-to-end data preparation, YAML configuration, model training, and inference scripts.
+- `hasil_deteksi/`: A collection of output inference images from the validation set demonstrating model performance.
+- `web/`: A Next.js based static site designed with an academic/research aesthetics to showcase the methodology and results.
+
+## Methodology
+- **Dataset:** A curated vehicle dataset sourced from Kaggle (`nadinpethiyagoda/vehicle-dataset-for-yolo`). The dataset features 6 balanced classes common in South/Southeast Asian traffic (Car, Threewheel, Bus, Truck, Motorbike, Van).
+- **Model Architecture:** YOLOv8 Small (`yolov8s.pt`) was chosen for its optimal balance between high precision (mAP) and real-time inference speed (low latency).
+- **Training:** The model was fine-tuned for 100 epochs using an image size of 640x640 and a batch size of 16.
+
+## Results & Evaluation
+- **Quantitative:** The trained model achieved an overall **mAP@50 of 98.3%** and an impressive inference speed of **~6.7ms per image**.
+- **Qualitative:** Inference was performed on 10 unseen validation images (stored in `hasil_deteksi/`), successfully identifying overlapping vehicles across various scales with high confidence scores.
+
+## Challenges & Limitations
+- **Data Curation:** Since cars form the overwhelming majority of road vehicles, curating a perfectly balanced dataset required manual effort to prevent the model from becoming biased toward cars and ignoring minority classes like the Threewheel.
+- **Occlusion:** In dense traffic, heavy occlusion can lower confidence scores for background vehicles.
+- **Computational Constraints:** Processing 640x640 images over 100 epochs demanded significant VRAM, requiring careful batch size optimization to prevent out-of-memory errors on standard GPUs.
+
+## Requirements and Installation
+
+
+To run the core machine learning pipeline locally, you need Python and the `ultralytics` package.
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Fahrizp24/vehicle-classification-yolo.git
+   cd vehicle-classification-yolo
+   ```
+
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the notebook:
+   Open `vechicle-detection-with-yolo.ipynb` in Jupyter Notebook or JupyterLab to execute the pipeline step-by-step.
+
+## Web Application (Next.js)
+
+To run the local development server for the project presentation page:
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Visit `http://localhost:3000` to view the page.
+
+## Deployment
+The web portion of this project is built to be deployed to GitHub Pages via a static export.
